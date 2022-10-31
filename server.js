@@ -5,9 +5,9 @@ const colors = require("colors");
 const app = require("./app");
 const { notFounderHandler, errorHandler } = require("./middlewares/errorHandler");
 
-// database connection
+//database connection
 mongoose
-  .connect(process.env.DATABASE_LOCAL, {
+  .connect("mongodb://localhost/todos", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     family: 4,
@@ -30,7 +30,7 @@ app.listen(port, () => {
 /*--------- If no error is handled express -----------*/
 process.on("unhandledRejection", (error) => {
   console.log(error.name, error.message);
-  app.close(() => {
-    process.exit(1);
-  });
+  // app.close(() => {
+  //   process.exit(1);
+  // });
 });
